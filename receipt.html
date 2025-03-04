@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salar</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  /* Your existing CSS styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    background-image: url(wait.jpg);
+    background-size: cover;
+  }
+  .container {
+    max-width: 840px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 150px;
+   background-image: url(stamp.jpg);
+   background-size: cover;
+  }
+  .receipt {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 50px;
+   margin-bottom: 20px;
+  }
+  .receipt-left {
+    flex: 0 0 60%;
+  }
+  .receipt-right {
+    flex: 0 0 30%;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="cont" style="width: 800px;height: 450px;border: 2px solid black;">
+      <div class="receipt"  >
+       <div class="receipt-left">
+         <h2 style="margin-left: 170px;font-size: 35px;">Booking Receipt</h2><br><br>
+         <p style="font-size: 20px;margin-top: 0px;">Movie: <strong id="Salar"></strong></p><br>
+         <p style="font-size: 20px;margin-top: 0px;">Time: <strong id="selectedTiming"></strong></p><br>
+         <p style="font-size: 20px;margin-top: 0px;">No. of Seats: <strong id="numSeats"></strong></p><br>
+         <p style="font-size: 20px;margin-top: 0px;">Seat Numbers: <strong id="selectedSeats"></strong></p>
+         <p style="font-size: 20px;margin-top: 40px;">Total Amount: <strong id="totalAmountReceipt"></strong></p>
+       </div>
+       <div class="receipt-right" style="margin-top: 30px;margin-right: 30px;">
+         <img src="salar.jpg" alt="Selected Picture">
+       </div>
+      </div>
+    </div>
+   </div>
+   <button type="button" class="btn btn-danger" onclick="go()" style="position: absolute;right: 8px;top: 15px;font-size: larger;font-weight: 700;">Go Back</button>
+   <script>
+     const selectedSeatsDiv = document.getElementById('selectedSeats');
+     const numSeatsDiv = document.getElementById('numSeats');
+     const selectedTimingDiv = document.getElementById('selectedTiming');
+     const totalAmountDiv = document.getElementById('totalAmountReceipt');
+     const pageTitle = document.title; // Added this line
+   
+     // Retrieve selected seats information from localStorage
+     const selectedSeatsString = localStorage.getItem('selectedSeats');
+     const numSeats = localStorage.getItem('numSeats');
+     const selectedTiming = localStorage.getItem('selectedTiming');
+     const totalAmount = localStorage.getItem('totalAmount'); 
+     const movieName = document.getElementById('Salar');// Added this line
+   
+     // Parse the selected seats JSON string
+     const selectedSeats = JSON.parse(selectedSeatsString);
+   
+     // Display selected seats, number of seats, timing, and total amount on receipt
+     displaySelectedSeats();
+     displayNumSeats();
+     displaySelectedTiming();
+     displayTotalAmount(); // Added this line
+     setMovieName();
+     function displaySelectedSeats() {
+       selectedSeatsDiv.innerHTML = selectedSeats.map(s => `${s.row}${s.col}`).join(', ');
+     }
+   
+     function displayNumSeats() {
+       numSeatsDiv.textContent = numSeats;
+     }
+   
+     function displaySelectedTiming() {
+       selectedTimingDiv.textContent = selectedTiming;
+     }
+   
+     function displayTotalAmount() { // Added this function
+       totalAmountDiv.textContent = totalAmount + '/-';
+     }
+     function setMovieName() {
+   
+    movieName.textContent = pageTitle;
+ 
+  }
+  function go(){
+    window.location.href = 'salar.html';
+  }
+   </script>
+   
+
+</body>
+</html>

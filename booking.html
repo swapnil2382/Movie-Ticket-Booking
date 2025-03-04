@@ -1,0 +1,342 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movie Ticket Booking</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-image: url(Untitled\ Project\ \(1\).jpg);
+    background-size: cover;
+  }
+  .container {
+    max-width: 500px;
+    text-align: center;
+    height: 700px;
+    margin: auto;
+   
+    
+  }
+  .seats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 80px;
+    width: 300px;
+    height: 400px;
+    margin: auto;
+  }
+  .seat {
+    width: 50px;
+    height: 50px;
+    background-color: #ccc;
+    margin: 5px;
+    cursor: pointer;
+    background-image: url(seatbg.jpg);
+    background-size: cover;
+  }
+  .selected {
+    background-image: url(selectedseatbg.jpg);
+    background-size: cover;
+  }
+</style>
+</head>
+<body>
+
+<div class="container" style="background-color: rgb(0, 6, 6);margin-top: 30px">
+  <div class="screen" style="background-image: url(screenbook.jpg);height: 50px;background-size: cover;border-top: 25px;">
+    
+
+  </div>
+  
+  <div class="seats-container" id="seatsContainer" style="margin-top: 50px;"></div>
+  <div>
+    <div class="seatno" style="margin-top: 50px;position: relative;justify-content: center;">
+      <label for="numSeats" style="font-size: larger;font-weight: bolder;color: aliceblue;">Select the no. of Seats:</label>
+      <input type="numeric" id="numSeats" min="1" max="30" value="1" style="background-color: transparent;border: none;font-size: larger;text-align: center;outline: none;color: aliceblue;text-decoration: none;width: 30px;">
+    </div>
+    <div class="seatbooked" style="display: flex;position: relative;justify-content: center;">
+    <p style="font-size: larger;font-weight: bolder;margin-bottom: 5px;color: aliceblue;">Selected Seats:</p>
+    <div style="justify-content: center;position: relative;margin-top: 20px;margin-left: 5px;font-size: larger;font-style: inherit;font-weight: 700;color: aliceblue;" id="selectedSeats"></div>
+  </div>
+    <button onclick="bookSeats()" style="width: 130px;height: 40px;margin-top: 10px;border-radius: 5px;background-color: rgb(248, 68, 100);font-weight: bold;color: aliceblue;cursor: pointer;border: none;">Book Tickets</button>
+  
+  </div>
+  <div>
+    
+  </div>
+</div>
+
+<script>
+  const seatsContainer = document.getElementById('seatsContainer');
+  const selectedSeatsDiv = document.getElementById('selectedSeats');
+  const numSeatsInput = document.getElementById('numSeats');
+  let selectedSeats = [];
+
+  // Generate seats
+  const numRows = 6;
+  const numCols = 5;
+  for (let i = 0; i < numRows; i++) {
+    for (let j = 0; j < numCols; j++) {
+      const seat = document.createElement('div');
+      seat.className = 'seat';
+      seat.setAttribute('data-row', String.fromCharCode(65 + i));
+      seat.setAttribute('data-col', j + 1);
+      seat.addEventListener('click', toggleSeat);
+      seatsContainer.appendChild(seat);
+    }
+  }
+
+  // Function to toggle seat selection
+  function toggleSeat() {
+    const seat = this;
+    const row = seat.getAttribute('data-row');
+    const col = seat.getAttribute('data-col');
+    const seatIndex = selectedSeats.findIndex(s => s.row === row && s.col === col);
+    if (seatIndex === -1) {
+      if (selectedSeats.length < parseInt(numSeatsInput.value)) {
+        selectedSeats.push({ row, col });
+        seat.classList.add('selected');
+      }
+    } else {
+      selectedSeats.splice(seatIndex, 1);
+      seat.classList.remove('selected');
+    }
+    displaySelectedSeats();
+  }
+
+  // Function to display selected seats
+  function displaySelectedSeats() {
+    selectedSeatsDiv.innerHTML = selectedSeats.map(s => `${s.row}${s.col}`).join(', ');
+  }
+
+  // Function to book selected seats
+  function bookSeats() {
+    if (selectedSeats.length === parseInt(numSeatsInput.value)) {
+      alert(`Successfully booked seats: ${selectedSeats.map(s => `${s.row}${s.col}`).join(', ')}`);
+      // Here you can add further logic for booking the seats
+      // For example, sending the selected seats to the server for booking
+    } else {
+      alert('Please select the correct number of seats.');
+    }
+  }
+</script>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movie Ticket Booking</title>
+<style>
+  /* Your existing CSS styles */
+ body {
+    font-family: Arial, sans-serif;
+    background-image: url(Untitled\ Project\ \(1\).jpg);
+    background-size: cover;
+  }
+  .container {
+    max-width: 500px;
+    text-align: center;
+    height: 700px;
+    margin: auto;
+  }
+  .seats-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 80px;
+    width: 300px;
+    height: 400px;
+    margin: auto;
+  }
+  .seat {
+    width: 50px;
+    height: 50px;
+    background-color: #ccc;
+    margin: 5px;
+    cursor: pointer;
+    background-image: url(seatbg.jpg);
+    background-size: cover;
+  }
+  .selected {
+    background-image: url(selectedseatbg.jpg);
+    background-size: cover;
+  }
+
+  /* Additional styles from the second HTML file */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  .receipt {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .receipt-left {
+    flex: 0 0 60%;
+  }
+  .receipt-right {
+    flex: 0 0 30%;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+</head>
+<body>
+
+<div class="container" id="container1" style="background-color: rgb(0, 6, 6);margin-top: 30px">
+  <div class="screen" style="background-image: url(screenbook.jpg);height: 50px;background-size: cover;border-top: 25px;"></div>
+  
+  <div class="seats-container" id="seatsContainer" style="margin-top: 50px;"></div>
+  
+  <div>
+    <div class="seatno" style="margin-top: 50px;position: relative;justify-content: center;">
+      <label for="numSeats" style="font-size: larger;font-weight: bolder;color: aliceblue;">Select the no. of Seats:</label>
+      <input type="numeric" id="numSeats" min="1" max="30" value="1" style="background-color: transparent;border: none;font-size: larger;text-align: center;outline: none;color: aliceblue;text-decoration: none;width: 30px;">
+    </div>
+    
+    <div class="timings" style="margin-top: 20px;position: relative;justify-content: center;">
+      <label for="movieTimings" style="font-size: larger;font-weight: bolder;color: aliceblue;">Select Timing:</label>
+      <select id="movieTimings" style="background-color: transparent;border: none;font-size: larger;text-align: center;outline: none;color: aliceblue;">
+        <option value="9:00 AM">9:00 AM</option>
+        <option value="12:00 PM">12:00 PM</option>
+        <option value="3:00 PM">3:00 PM</option>
+        <option value="6:00 PM">6:00 PM</option>
+        <option value="9:00 PM">9:00 PM</option>
+      </select>
+    </div>
+    
+    <div class="seatbooked" style="display: flex;position: relative;justify-content: center;">
+      <p style="font-size: larger;font-weight: bolder;margin-bottom: 5px;color: aliceblue;">Selected Seats:</p>
+      <div style="justify-content: center;position: relative;margin-top: 20px;margin-left: 5px;font-size: larger;font-style: inherit;font-weight: 700;color: aliceblue;" id="selectedSeats"></div>
+    </div>
+    
+    <button onclick="redirectToReceipt()" style="width: 130px;height: 40px;margin-top: 10px;border-radius: 5px;background-color: rgb(248, 68, 100);font-weight: bold;color: aliceblue;cursor: pointer;border: none;">Book Tickets</button>
+  </div>
+</div>
+
+<div class="container" id="container2">
+  <div class="receipt">
+    <div class="receipt-left">
+      <h2 style="margin-left: 170px;font-size: 35px;">Booking Receipt</h2><br><br>
+      <p style="font-size: 20px;">Movie: <strong>Movie Name</strong></p><br>
+      <p style="font-size: 20px;">Time: <strong id="selectedTiming"></strong></p><br>
+      <p style="font-size: 20px;">No. of Seats: <strong id="numSeats"></strong></p><br>
+      <p style="font-size: 20px;">Seat Numbers: <strong id="selectedSeats"></strong></p>
+    </div>
+    <div class="receipt-right" style="margin-top: 30px;">
+      <img src="salar.jpg" alt="Selected Picture">
+    </div>
+  </div>
+</div>
+
+<script>
+  const seatsContainer = document.getElementById('seatsContainer');
+  const selectedSeatsDiv = document.getElementById('selectedSeats');
+  const numSeatsInput = document.getElementById('numSeats');
+  const movieTimingsSelect = document.getElementById('movieTimings');
+  let selectedSeats = [];
+
+  // Generate seats - Remain unchanged
+  const numRows = 6;
+  const numCols = 5;
+  for (let i = 0; i < numRows; i++) {
+    for (let j = 0; j < numCols; j++) {
+      const seat = document.createElement('div');
+      seat.className = 'seat';
+      seat.setAttribute('data-row', String.fromCharCode(65 + i));
+      seat.setAttribute('data-col', j + 1);
+      seat.addEventListener('click', toggleSeat);
+      seatsContainer.appendChild(seat);
+    }
+  }
+
+  // Function to toggle seat selection - Remain unchanged
+  function toggleSeat() {
+    const seat = this;
+    const row = seat.getAttribute('data-row');
+    const col = seat.getAttribute('data-col');
+    const seatIndex = selectedSeats.findIndex(s => s.row === row && s.col === col);
+    if (seatIndex === -1) {
+      if (selectedSeats.length < parseInt(numSeatsInput.value)) {
+        selectedSeats.push({ row, col });
+        seat.classList.add('selected');
+      }
+    } else {
+      selectedSeats.splice(seatIndex, 1);
+      seat.classList.remove('selected');
+    }
+    displaySelectedSeats();
+  }
+
+  // Function to display selected seats - Remain unchanged
+  function displaySelectedSeats() {
+    selectedSeatsDiv.innerHTML = selectedSeats.map(s => `${s.row}${s.col}`).join(', ');
+  }
+
+  // Function to redirect to receipt page - Remain unchanged
+  function redirectToReceipt() {
+    if (selectedSeats.length === parseInt(numSeatsInput.value)) {
+      const selectedSeatsString = JSON.stringify(selectedSeats);
+      localStorage.setItem('selectedSeats', selectedSeatsString);
+      localStorage.setItem('numSeats', numSeatsInput.value); // Store the number of seats as well
+      localStorage.setItem('selectedTiming', movieTimingsSelect.value); // Store the selected timing
+      window.location.href = 'receipt.html';
+    } else {
+      alert('Please select the correct number of seats.');
+    }
+  }
+
+  const selectedSeatsDivReceipt = document.getElementById('selectedSeats');
+  const numSeatsDivReceipt = document.getElementById('numSeats');
+  const selectedTimingDiv = document.getElementById('selectedTiming');
+
+  // Retrieve selected seats information from localStorage
+  const selectedSeatsStringReceipt = localStorage.getItem('selectedSeats');
+  const numSeatsReceipt = localStorage.getItem('numSeats');
+  const selectedTiming = localStorage.getItem('selectedTiming');
+
+  // Parse the selected seats JSON string
+  const selectedSeatsReceipt = JSON.parse(selectedSeatsStringReceipt);
+
+  // Display selected seats, number of seats, and timing on receipt
+  displaySelectedSeatsReceipt();
+  displayNumSeatsReceipt();
+  displaySelectedTiming();
+
+  function displaySelectedSeatsReceipt() {
+    selectedSeatsDivReceipt.textContent = selectedSeatsReceipt.map(s => `${s.row}${s.col}`).join(', ');
+  }
+
+  function displayNumSeatsReceipt() {
+    numSeatsDivReceipt.textContent = numSeatsReceipt;
+  }
+
+  function displaySelectedTiming() {
+    selectedTimingDiv.textContent = selectedTiming;
+  }
+  document.getElementById('container2').style.display = 'none';
+    document.getElementById('container1').style.display = 'block';
+</script>
+
+</body>
+</html>
+

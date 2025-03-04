@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <style>
+        .box {
+            width: 400px;
+            height: 500px;
+            background-image: url(loback.jpg);
+            background-size: cover;
+            border: 2px double white;
+            border-radius: 30px;
+        }
+        .container1 , .container2{
+            display: flex;
+            justify-content: center;
+            margin-top: 10%;
+            margin-left: 550px;
+        }
+        .username{
+            width: 350px;
+            height: 50px;
+            margin-top: 50px;
+            margin-left: 25px;
+            
+        }
+        .password{
+            width: 350px;
+            height: 50px;
+            margin-top: 40px;
+            margin-left: 25px;
+           margin-bottom: 10px;
+        }
+        .box1{
+            width: 400px;
+            height: 600px;
+            background-image: url(loback.jpg);
+            background-size: cover;
+            border: 2px double white;
+            border-radius: 30px;
+        }
+      .mbno , .name ,.username ,.password1,.conpass{
+        width: 350px;
+            height: 30px;
+            margin-top: 50px;
+            margin-left: 25px;
+      }
+      .submitbut{
+  background-color: rgba(31, 130, 179, 0.677); 
+  color: black; 
+  border: 2px solid #0d0d0d;
+}
+
+.submitbut:hover {
+  background-color: rgb(31, 130, 179);
+  color: white;
+      }
+    </style>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+</head>
+<body style="  background-image: url(logmain.jpg.jpg);
+background-size: cover;">
+    <div class="container1" id="container1">
+        <div class="box">
+            <div class="navbar">
+                <a href="index.html"> <p style="margin-bottom: 0px;margin-left: 365px; color: aliceblue; font-size: 30px; height: 35px;margin-top: 1px;width: 35px;background-color: rgb(254, 19, 2);border-top-right-radius: 27px ;border-bottom-left-radius: 13px;color: aliceblue;"><i style="margin-left: 6px;margin-top: 3px;color: aliceblue;" class="fa-solid fa-xmark"></i></a>
+            <h1 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;display: flex;justify-content: center;font-size: 3rem;color: aliceblue; margin-top: 0px;">Login</h1><hr style="width: 250px;justify-content: center;" >
+        </div>
+            <div class="username">
+                <input type="text" placeholder="Username" style="color: aliceblue;outline: none; width: 343px;height: 45px;background-color: transparent;border-bottom: 2px solid rgb(252, 250, 250) ;border-top: 0px;border-right: 0px;border-left:0px ;" >
+            </div>
+            <div class="password">
+                <input type="password" placeholder="Password" style="outline: none;color: aliceblue; width: 343px;height: 45px;background-color: transparent;border-bottom: 2px solid rgb(255, 255, 255) ;border-top: 0px;border-right: 0px;border-left:0px ;">
+
+            </div>
+            <div class="forgot">
+                <a href="" style="margin-left: 235px;margin-top: 50px;height: 50px; color: blue;text-decoration: none;" >Forgotten Password?</a>
+            </div>
+            <div class="logbut">
+               <button class="submitbut" style="width: 300px; 
+               height: 50px;
+               margin-top: 50px;
+               margin-left: 50px;color: aliceblue;border-radius: 50px;">Login</button>
+               <p style="color: aliceblue;margin-top: 15px;margin-left: 100px;">Don't have an acc <a href="#" onclick="go()" style="color: rgb(249, 250, 249);font-weight: bolder;">Register</a> here </p>
+               
+            </div>
+
+        </div>
+    </div>
+    <div class="container2" id="container2">
+        <div class="box1">
+            <a href="#" onclick="loginback()"> <p style="margin-bottom: 0px;margin-left: 365px; color: aliceblue; font-size: 30px; height: 35px;margin-top: 1px;width: 35px;background-color: rgb(254, 19, 2);border-top-right-radius: 27px ;border-bottom-left-radius: 13px;color: aliceblue;"><i style="margin-left: 6px;margin-top: 3px;color: aliceblue;" class="fa-solid fa-xmark"></i></a>
+            <h1 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;display: flex;justify-content: center;margin-top: 0px; font-size: 3rem;color: aliceblue;">Register</h1><hr style="width: 250px;justify-content: center;">
+            
+        <div class="mbno">
+            <input type="tel" placeholder="Phone no." style="color: aliceblue;outline: none; width: 343px;height: 45px;background-color: transparent;border-bottom: 2px solid rgb(252, 250, 250) ;border-top: 0px;border-right: 0px;border-left:0px ;" >
+        </div>
+        
+        <div class="name">
+            <input type="text" placeholder="Username" style="color: aliceblue;outline: none; width: 343px;height: 45px;background-color: transparent;border-bottom: 2px solid rgb(252, 250, 250) ;border-top: 0px;border-right: 0px;border-left:0px ;" >
+        </div>
+        <div class="password1">
+            <input type="password" placeholder="Enter Password" style="color: aliceblue;outline: none; width: 343px;height: 45px;background-color: transparent;border-bottom: 2px solid rgb(252, 250, 250) ;border-top: 0px;border-right: 0px;border-left:0px ;" >
+        </div>
+        <div class="conpass">
+            <input type="password" placeholder="Re-enter ypur password" style="color: aliceblue;outline: none; width: 343px;height: 45px;background-color: transparent;border-bottom: 2px solid rgb(252, 250, 250) ;border-top: 0px;border-right: 0px;border-left:0px ;" >
+        </div>
+        <div class="register" >
+              <input type="button" value="submit" class="submitbut" style="width: 300px;
+              height: 50px;
+              margin-top: 50px;
+              margin-left: 50px;color: rgb(250, 245, 245);border-radius: 50px;"> 
+               <p style="color: aliceblue;margin-top: 15px;margin-left: 100px;">Already have an acc <a href="#" onclick="loginback()" style="color: rgb(251, 251, 253);font-weight: bolder;">Login</a> here </p></div>
+    </div>
+    </div>
+</body>
+<script>
+   document.getElementById('container2').style.display = 'none';
+    document.getElementById('container1').style.display = 'block';
+   function go(){
+    document.getElementById('container1').style.display = 'none';
+    document.getElementById('container2').style.display = 'block';
+   };
+   function loginback(){
+    document.getElementById('container2').style.display = 'none';
+    document.getElementById('container1').style.display = 'block';
+   };
+
+   document.querySelector('.submitbut').addEventListener('click', async () => {
+    const username = document.querySelector('input[placeholder="Username"]').value;
+    const password = document.querySelector('input[placeholder="Password"]').value;
+
+    const response = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+    });
+
+    const data = await response.text();
+    alert(data);
+});
+
+</script>
+</html>

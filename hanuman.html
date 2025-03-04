@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanuman</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="main" style="display: flex; background-color: rgb(235, 235, 235) ;height:630px ;width: 100%;background-image: url(hanumanbg.jpg);background-size: cover;">
+        <a href="https://youtu.be/MKqJBhOgapM?si=tolbx8v61f0ROU4H">
+       <div  class="trailer" style=" height: 500px;width: 750px;background-color: aliceblue;margin-left: 80px;margin-top: 70px;background-image: url(hanumantrailer.jpg);background-size: cover;border-radius: 25px;border: 1px solid white;">
+            <i class="fa-regular fa-circle-play" style="color: rgb(246, 248, 250);font-size: 4rem;margin-left: 350px;margin-top: 220px;"></i>
+       </a>
+        </div>
+        <div class="info" style="height: 480px;width: 600px;background-color: aliceblue;margin-left: 50px;margin-top: 80px;border-radius: 25px;border-color: aliceblue;background-color: transparent;">
+        <h1 style="font-size: 5rem;margin-left: 10px;height: 20px;color: aliceblue;">
+         Hanuman
+        </h1>
+        <p style="font-size: 1.5rem;margin-left: 10px;margin-top: 70px;color: aliceblue;">Action,Advanture,Fantasy</p>
+        <p style="margin-left: 10px;margin-top: 80px;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size: larger; color: aliceblue;">2D,ICE</p>
+        <p style="margin-left: 10px;margin-top: 10px;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size: larger;color: aliceblue;">Telugu , Hindi, Tamil, Kannada, Malayalam</p>
+        <p style="margin-left: 10px;margin-top: 10px;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size: larger;color: aliceblue;">2h 38m</p>
+        <a href="booking.html"><input type="button" style="height: 40px;width: 150px;margin-left: 10px;border-radius: 5px; color: aliceblue;font-size: large;background-color: rgb(248, 68, 100);font-weight: bolder;font-size: 16px;border: none;cursor: pointer;" value="Book Now" ></a>
+    </div>
+    <div class="about">
+        <p style="color: rgb(1, 9, 17);position: absolute;left: 80px;bottom: 20px;font-size: 2rem;font-weight: bolder;">About The Movie </p>
+        <div class="div">
+            <p style="color: rgb(1, 9, 17);position: absolute;left: 80px;bottom: 0px;font-size: 1.5rem;">Hanumanthu gets the powers of Hanuman in a distant village and fights for Anjanadri.
+            </p>
+        </div>
+    </div>
+    </div>
+    <script>
+        const seatsContainer = document.getElementById('seatsContainer');
+        const selectedSeatsDiv = document.getElementById('selectedSeats');
+        const numSeatsInput = document.getElementById('numSeats');
+        const movieTimingsSelect = document.getElementById('movieTimings');
+        let selectedSeats = [];
+      
+        // Generate seats - Remain unchanged
+        const numRows = 6;
+        const numCols = 5;
+        for (let i = 0; i < numRows; i++) {
+          for (let j = 0; j < numCols; j++) {
+            const seat = document.createElement('div');
+            seat.className = 'seat';
+            seat.setAttribute('data-row', String.fromCharCode(65 + i));
+            seat.setAttribute('data-col', j + 1);
+            seat.addEventListener('click', toggleSeat);
+            seatsContainer.appendChild(seat);
+          }
+        }
+      
+        // Function to toggle seat selection - Remain unchanged
+        function toggleSeat() {
+          const seat = this;
+          const row = seat.getAttribute('data-row');
+          const col = seat.getAttribute('data-col');
+          const seatIndex = selectedSeats.findIndex(s => s.row === row && s.col === col);
+          if (seatIndex === -1) {
+            if (selectedSeats.length < parseInt(numSeatsInput.value)) {
+              selectedSeats.push({ row, col });
+              seat.classList.add('selected');
+            }
+          } else {
+            selectedSeats.splice(seatIndex, 1);
+            seat.classList.remove('selected');
+          }
+          displaySelectedSeats();
+        }
+      
+        // Function to display selected seats - Remain unchanged
+       // Define seat price
+      const seatPrice = 100; // Change this according to your pricing
+      
+      // Function to calculate total price
+      function calculateTotalPrice() {
+        return selectedSeats.length * seatPrice;
+      }
+      
+      // Function to update total amount in receipt
+      function displayTotalAmount(totalAmount) {
+        const totalAmountDiv = document.getElementById('totalAmount');
+        totalAmountDiv.textContent = `${totalAmount}/-`;
+      }
+      
+      // Update the display selected seats function to include price
+      function displaySelectedSeats() {
+        const totalPrice = calculateTotalPrice();
+        selectedSeatsDiv.innerHTML = selectedSeats.map(s => `${s.row}${s.col}`).join(', ');
+        displayTotalAmount(totalPrice);
+      }
+      
+      // Update the redirect to receipt function to include total amount
+      function redirectToReceipt() {
+        const movieName = document.getElementById('Salar');
+          const pageTitle = document.title;
+          movieName.textContent = pageTitle;
+        if (selectedSeats.length === parseInt(numSeatsInput.value)) {
+          const selectedSeatsString = JSON.stringify(selectedSeats);
+          localStorage.setItem('selectedSeats', selectedSeatsString);
+          localStorage.setItem('numSeats', numSeatsInput.value); // Store the number of seats as well
+          localStorage.setItem('selectedTiming', movieTimingsSelect.value); // Store the selected timing
+          const totalAmount = calculateTotalPrice();
+          localStorage.setItem('totalAmount', totalAmount); // Store the total amount
+          const container1 = document.getElementById('container1');
+        const paymentContainer = document.getElementById('paymentContainer');
+        
+        container1.style.display = 'none';
+        paymentContainer.style.display = 'block';
+        } else {
+          alert('Please select the correct number of seats.');
+        }
+        if (container1.style.display === 'none') {
+          document.body.style.backgroundColor = '#646363'; // Change to your desired background color for susContainer
+        } else {
+          document.body.style.backgroundColor = '#ffffff'; // Change to your desired background color for paymentContainer
+        }
+      
+      }
+      // Function to show payment options based on selected seats
+      function showFakePayment() {
+        const container1 = document.getElementById('container1');
+        const paymentContainer = document.getElementById('paymentContainer');
+        
+        container1.style.display = 'none';
+        paymentContainer.style.display = 'block';
+      }
+      
+      // Function to handle payment success
+      function fakePaymentSuccess() {
+        // Check if UPI ID or card number is filled out
+        const upiId = document.getElementById('upiId').value;
+        const cardNumber = document.getElementById('cardNumber').value;
+      
+        if (!upiId && !cardNumber) {
+          alert('Please enter UPI ID or Card Number to proceed.');
+          return;
+        }
+      
+        // Hide payment container and show success message
+        document.getElementById('paymentContainer').style.display = 'none';
+        document.getElementById('sus').style.display = 'block';
+        if (paymentContainer.style.display === 'none') {
+          document.body.style.backgroundColor = '#f0f0f0'; // Change to your desired background color for susContainer
+        } else {
+          document.body.style.backgroundColor = '#ffffff'; // Change to your desired background color for paymentContainer
+        }
+      
+        // Redirect to receipt.html after 5 seconds
+        setTimeout(function() {
+          window.location.href = 'receipt.html';
+        }, 1000);
+      
+        // Add animation class immediately
+        document.querySelector('.payment-successful').classList.add('animate__animated', 'animate__bounceIn');
+      
+        // Remove animation class after 5 seconds
+        setTimeout(function() {
+          document.querySelector('.payment-successful').classList.remove('animate__animated', 'animate__bounceIn');
+        }, 2000);
+      }
+      
+      
+      // Function to toggle payment methods
+      document.querySelectorAll('input[name="paymentMethod"]').forEach((elem) => {
+        elem.addEventListener('change', function() {
+          if (this.value === 'UPI') {
+            document.getElementById('upiPayment').style.display = 'block';
+            document.getElementById('cardPayment').style.display = 'none';
+          } else {
+            document.getElementById('upiPayment').style.display = 'none';
+            document.getElementById('cardPayment').style.display = 'block';
+          }
+        });
+      });
+      
+        const selectedSeatsDivReceipt = document.getElementById('selectedSeatsReceipt');
+        const numSeatsDivReceipt = document.getElementById('numSeats');
+        const selectedTimingDiv = document.getElementById('selectedTiming');
+      
+        // Retrieve selected seats information from localStorage
+        const selectedSeatsStringReceipt = localStorage.getItem('selectedSeats');
+        const numSeatsReceipt = localStorage.getItem('numSeats');
+        const selectedTiming = localStorage.getItem('selectedTiming');
+      
+        // Parse the selected seats JSON string
+        const selectedSeatsReceipt = JSON.parse(selectedSeatsStringReceipt);
+      
+        // Display selected seats, number of seats, and timing on receipt
+        displaySelectedSeatsReceipt();
+        displayNumSeatsReceipt();
+        displaySelectedTiming();
+      
+        function displaySelectedSeatsReceipt() {
+          selectedSeatsDivReceipt.textContent = selectedSeatsReceipt.map(s => `${s.row}${s.col}`).join(', ');
+        }
+      
+        function displayNumSeatsReceipt() {
+          numSeatsDivReceipt.textContent = numSeatsReceipt;
+        }
+      
+        function displaySelectedTiming() {
+          selectedTimingDiv.textContent = selectedTiming;
+        }
+      
+        // Function to set movie name when booking now button is clicked
+        function setMovieName() {
+          const movieName = document.getElementById('Salar');
+          const pageTitle = document.title;
+          movieName.textContent = pageTitle;
+          document.getElementById('container2').style.display = 'none';
+        document.getElementById('main').style.display = 'none';
+        document.getElementById('container1').style.display = 'block';
+        }
+      
+       
+        // Hide container2 initially
+        document.getElementById('container1').style.display = 'none';
+        document.getElementById('container2').style.display = 'none';
+        document.getElementById('main').style.display = 'block';
+      </script>
+</body>
+</html>
